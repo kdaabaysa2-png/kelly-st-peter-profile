@@ -34,3 +34,33 @@
 .sp__fineprint { grid-column: 1 / -1; max-width: 76ch; margin: 2px 0 0; color: var(--ink-3); font-size: 12px; line-height: 1.6; }
 .sp__fineprint a { color: var(--accent-ink); text-underline-offset: 3px; }
 @media (max-width: 460px) { .sp__plans { grid-template-columns: minmax(0, 1fr); } .sp__photo-wrap, .sp__photo { min-height: 190px; height: 190px; } }
+
+
+.sp__stories { margin-top: clamp(56px, 8vw, 104px); }
+.sp__stories-head { max-width: 760px; margin-bottom: 24px; }
+.sp__stories-head h3 { max-width: 22ch; margin: 0; color: var(--ink-2); font-size: clamp(1.55rem, 3.2vw, 2.6rem); font-weight: 400; line-height: 1.08; letter-spacing: -.04em; }
+.sp__marquee { display: grid; gap: 14px; }
+.sp__marquee-row { width: calc(100% + var(--sp-gutter) * 2); margin-left: calc(var(--sp-gutter) * -1); overflow: hidden; cursor: grab; -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
+.sp__marquee-row:focus { outline: none; }
+.sp__marquee-row:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: -4px; border-radius: 16px; }
+.sp__marquee-track { display: flex; width: max-content; animation: sp-marquee-travel 22s linear infinite; will-change: transform; }
+.sp__marquee-row--2 .sp__marquee-track { animation-duration: 26s; animation-direction: reverse; }
+.sp__marquee-set { display: flex; flex: 0 0 auto; align-items: center; gap: 10px; width: max-content; padding-right: 10px; }
+.sp__story-tile { flex: 0 0 auto; display: grid; place-items: center; overflow: hidden; margin: 0; border-radius: 12px; background: var(--surface); box-shadow: var(--shadow-sm); }
+.sp__story-tile--wide { width: clamp(280px, 34vw, 400px); aspect-ratio: 1.25; }
+.sp__story-tile--square { width: clamp(220px, 26vw, 310px); aspect-ratio: 1; }
+.sp__story-tile img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: inherit; }
+.sp__marquee-row:hover .sp__marquee-track,
+.sp__marquee-row:focus-within .sp__marquee-track { animation-play-state: paused; }
+@keyframes sp-marquee-travel { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .sp__marquee-row { overflow-x: auto; overscroll-behavior-inline: contain; scrollbar-width: thin; }
+  .sp__marquee-row--1 { scroll-snap-type: x proximity; }
+  .sp__marquee-track { animation: none; will-change: auto; transform: none; }
+  .sp__story-tile { scroll-snap-align: start; }
+}
+@media (max-width: 600px) {
+  .sp__stories { margin-top: 56px; }
+  .sp__story-tile--wide { width: min(76vw, 330px); }
+  .sp__story-tile--square { width: min(62vw, 270px); }
+}
