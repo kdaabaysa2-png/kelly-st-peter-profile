@@ -20,7 +20,7 @@ export const site = {
   /** The live address, no trailing slash. Canonical URLs, the sitemap and the JSON-LD use it. */
   url: 'https://example.com',
   role: 'St. Peter - Unit Manager',
-  email: 'you@example.com',
+  email: 'kdaabay.sa2@gmail.com',
   emailSubject: 'Project inquiry',
   replyPromise: 'Reply within one business day.',
   location: 'Your City, GMT+0',
@@ -48,7 +48,7 @@ export const socials: SocialLink[] = [
   { label: 'LinkedIn', href: '#', external: true, icon: 'linkedin' },
   { label: 'GitHub', href: '#', external: true, icon: 'github' },
   { label: 'X', href: '#', external: true, icon: 'x' },
-  { label: 'Facebook', href: '#', external: true, icon: 'facebook' },
+  { label: 'Facebook', href: 'https://www.facebook.com/cwb.salesagent1', external: true, icon: 'facebook' },
   { label: 'Discord', href: '#', external: true, icon: 'discord' },
 ]
 
