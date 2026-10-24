@@ -8,7 +8,7 @@ const plans = [
   {
     name: 'St. George',
     detail: 'Wood casket · single top · split lid',
-    image: 'ST.%20GEORGE.png',
+    image: 'ST.%20GEORGE.webp',
     imageAlt: 'St. George traditional life plan casket',
     schedules: [
       { term: '5 years to pay', contract: '₱53,000', annual: '₱10,600', semiAnnual: '₱5,620', quarterly: '₱2,915', monthly: '₱1,000' },
@@ -18,7 +18,7 @@ const plans = [
   {
     name: 'St. Gregory',
     detail: 'Metal casket · single top · split lid',
-    image: 'ST.%20GREGORY.png',
+    image: 'ST.%20GREGORY.webp',
     imageAlt: 'St. Gregory traditional life plan casket',
     schedules: [
       { term: '5 years to pay', contract: '₱57,000', annual: '₱11,400', semiAnnual: '₱6,040', quarterly: '₱3,135', monthly: '₱1,100' },
@@ -28,7 +28,7 @@ const plans = [
   {
     name: 'St. Claire',
     detail: 'Metal casket · single top · full lid',
-    image: 'ST.%20CLAIRE.png',
+    image: 'ST.%20CLAIRE.webp',
     imageAlt: 'St. Claire traditional life plan casket',
     schedules: [
       { term: '5 years to pay', contract: '₱98,500', annual: '₱19,700', semiAnnual: '₱10,440', quarterly: '₱5,420', monthly: '₱1,870' },
@@ -37,7 +37,7 @@ const plans = [
   {
     name: 'St. Bernadette',
     detail: 'Metal casket · single top · full lid',
-    image: 'ST.%20BERNADETTE.png',
+    image: 'ST.%20BERNADETTE.webp',
     imageAlt: 'St. Bernadette traditional life plan casket',
     schedules: [
       { term: '5 years to pay', contract: '₱125,000', annual: '₱25,000', semiAnnual: '₱13,250', quarterly: '₱6,875', monthly: '₱2,375' },
@@ -46,7 +46,7 @@ const plans = [
   {
     name: 'St. Anne',
     detail: 'Metal casket · double top · split and full lids',
-    image: 'ST.%20ANNE.png',
+    image: 'ST.%20ANNE.webp',
     imageAlt: 'St. Anne traditional life plan casket',
     schedules: [
       { term: '5 years to pay', contract: '₱157,500', annual: '₱31,500', semiAnnual: '₱16,695', quarterly: '₱8,660', monthly: '₱3,000' },
