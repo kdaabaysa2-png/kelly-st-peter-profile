@@ -14,25 +14,25 @@ const links = {
 }
 
 type Frequency = 'monthly' | 'quarterly' | 'semiAnnual' | 'annual'
-type Schedule = { years: number, contract: number, monthly: number, quarterly: number, semiAnnual: number, annual: number }
+type Schedule = { years: number, contract: number, monthly: number, quarterly: number, semiAnnual: number, annual: number, savings: Record<Frequency, number> & { spotCash: number } }
 type Plan = { name: string, material: string, lid: string, image: string, schedules: Schedule[] }
 const plans: Plan[] = [
   { name: 'St. George', material: 'Wood casket', lid: 'Single top · split lid · full glass', image: 'ST.%20GEORGE.png', schedules: [
-    { years: 5, contract: 53000, annual: 10600, semiAnnual: 5620, quarterly: 2915, monthly: 1000 },
-    { years: 7, contract: 57000, annual: 8145, semiAnnual: 4315, quarterly: 2240, monthly: 775 },
+    { years: 5, contract: 53000, annual: 10600, semiAnnual: 5620, quarterly: 2915, monthly: 1000, savings: { spotCash: 5300, annual: 1400, semiAnnual: 380, quarterly: 85, monthly: 0 } },
+    { years: 7, contract: 57000, annual: 8145, semiAnnual: 4315, quarterly: 2240, monthly: 775, savings: { spotCash: 13800, annual: 1155, semiAnnual: 335, quarterly: 85, monthly: 0 } },
   ] },
   { name: 'St. Gregory', material: 'Metal casket', lid: 'Single top · split lid · full glass', image: 'ST.%20GREGORY.png', schedules: [
-    { years: 5, contract: 57000, annual: 11400, semiAnnual: 6040, quarterly: 3135, monthly: 1100 },
-    { years: 7, contract: 62000, annual: 8860, semiAnnual: 4695, quarterly: 2435, monthly: 850 },
+    { years: 5, contract: 57000, annual: 11400, semiAnnual: 6040, quarterly: 3135, monthly: 1100, savings: { spotCash: 5700, annual: 1800, semiAnnual: 560, quarterly: 165, monthly: 0 } },
+    { years: 7, contract: 62000, annual: 8860, semiAnnual: 4695, quarterly: 2435, monthly: 850, savings: { spotCash: 15600, annual: 1340, semiAnnual: 405, quarterly: 115, monthly: 0 } },
   ] },
   { name: 'St. Claire', material: 'Metal casket', lid: 'Single top · half lid · half glass', image: 'ST.%20CLAIRE.png', schedules: [
-    { years: 5, contract: 98500, annual: 19700, semiAnnual: 10440, quarterly: 5420, monthly: 1870 },
+    { years: 5, contract: 98500, annual: 19700, semiAnnual: 10440, quarterly: 5420, monthly: 1870, savings: { spotCash: 9850, annual: 2740, semiAnnual: 780, quarterly: 190, monthly: 0 } },
   ] },
   { name: 'St. Bernadette', material: 'Metal casket', lid: 'Single top · full lid · full glass', image: 'ST.%20BERNADETTE.png', schedules: [
-    { years: 5, contract: 125000, annual: 25000, semiAnnual: 13250, quarterly: 6875, monthly: 2375 },
+    { years: 5, contract: 125000, annual: 25000, semiAnnual: 13250, quarterly: 6875, monthly: 2375, savings: { spotCash: 12500, annual: 3500, semiAnnual: 1000, quarterly: 250, monthly: 0 } },
   ] },
   { name: 'St. Anne', material: 'Metal casket', lid: 'Double top · split and full lids · full glass', image: 'ST.%20ANNE.png', schedules: [
-    { years: 5, contract: 157500, annual: 31500, semiAnnual: 16695, quarterly: 8660, monthly: 3000 },
+    { years: 5, contract: 157500, annual: 31500, semiAnnual: 16695, quarterly: 8660, monthly: 3000, savings: { spotCash: 15750, annual: 4500, semiAnnual: 1305, quarterly: 340, monthly: 0 } },
   ] },
 ]
 const frequencies: { key: Frequency, label: string, period: string }[] = [
@@ -66,7 +66,7 @@ function Arrow() { return <span aria-hidden="true">↗</span> }
 function External({ href, children, className = '' }: { href: string, children: React.ReactNode, className?: string }) {
   return <a href={href} className={className} target="_blank" rel="noopener noreferrer">{children}<span className="sr-only"> (opens in a new tab)</span></a>
 }
-function Chat({ className = 'button primary', children = 'Chat with Khessa' }: { className?: string, children?: React.ReactNode }) {
+function Chat({ className = 'button outline', children = 'Chat with Khessa' }: { className?: string, children?: React.ReactNode }) {
   return <External href={links.messenger} className={className}>{children} <Arrow /></External>
 }
 function Header() {
@@ -75,7 +75,7 @@ function Header() {
     <a href="/" className="wordmark" aria-label="Khessa Daabay home"><span className="st-peter-logo-frame"><img src="/images/brand/st-peter-transparent.png" alt="St. Peter — DeathCare Experts" width="554" height="554" /></span><span>Khessa Daabay<small>St. Peter · Unit Manager</small></span></a>
     <button className="menu-toggle" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'} <span aria-hidden="true">{open ? '×' : '+'}</span></button>
     <nav id="main-nav" className={open ? 'navigation is-open' : 'navigation'} aria-label="Main navigation" onClick={() => setOpen(false)}>
-      <a href="/#st-peter">Life plans</a><a href="/#about">Meet Khessa</a><a href="/#stories">Client stories</a><a href="/#faqs">FAQs</a><Chat className="button small primary" />
+      <a href="/#st-peter">Life plans</a><a href="/#about">Meet Khessa</a><a href="/#stories">Client stories</a><a href="/#faqs">FAQs</a><Chat className="button small outline" />
     </nav>
   </div></header>
 }
@@ -100,8 +100,8 @@ function PlanComparison() {
       return <article key={plan.name} className="plan-card"><div className="plan-image"><span className="plan-index">0{i + 1}</span><img src={`https://online.stpeter.com.ph/Images/Plan/${plan.image}`} width="640" height="360" loading="lazy" decoding="async" alt={`${plan.name} ${plan.material.toLowerCase()}, ${plan.lid.toLowerCase()}`} onError={e => { e.currentTarget.hidden = true; e.currentTarget.parentElement?.classList.add('image-unavailable') }} /><span className="image-fallback">See the official brochure for the product image.</span></div>
         <div className="plan-content"><p className="plan-material">{plan.material}</p><h3>{plan.name}</h3><p className="plan-detail">{plan.lid}</p><div className="price"><strong>{money(schedule[frequency])}</strong><span> / {chosen.period}</span><small>{years} years to pay</small></div>
         <p className="contract-price">Contract price <strong>{money(schedule.contract)}</strong></p>
-        <details className="schedule-details"><summary>View all payment frequencies <span aria-hidden="true">+</span></summary><dl>{frequencies.map(f => <div key={f.key}><dt>{f.label}</dt><dd>{money(schedule[f.key])}</dd></div>)}</dl><p className="fineprint">The contract price and total installments differ by payment frequency. Review your selected schedule before applying.</p></details>
-        <External href={links.application} className="button outline plan-ask">Buy this plan <Arrow /></External>
+        <details className="schedule-details"><summary>View all payment frequencies <span aria-hidden="true">+</span></summary><dl>{frequencies.map(f => <div key={f.key}><dt>{f.label}</dt><dd><span>{money(schedule[f.key])}</span><small className="payment-saving">Save {money(schedule.savings[f.key])}</small></dd></div>)}<div className="spot-saving"><dt>Spot cash savings</dt><dd><small className="payment-saving">Save {money(schedule.savings.spotCash)}</small></dd></div></dl><p className="fineprint savings-source">Savings are listed as shown in <External href={links.application}>Khessa’s application form</External>. Confirm the applicable quote and savings basis before applying.</p><p className="fineprint">The contract price and total installments differ by payment frequency. Review your selected schedule before applying.</p></details>
+        <External href={links.application} className="button primary plan-ask">Buy this plan <Arrow /></External>
       </div></article>
     })}</div>
     <div className="source-note"><span className="note-icon" aria-hidden="true">i</span><div><p>Clear rates. Informed choices.</p><p>Rates checked against St. Peter’s official materials on 24 October 2026. Prices, benefits, eligibility, and availability are subject to current official terms. Confirm your quote and Life Plan Agreement before applying.</p><div className="text-links"><External href={links.fiveYear}>5-year brochure <Arrow /></External><External href={links.sevenYear}>7-year brochure <Arrow /></External><External href={links.official}>Official plan listings <Arrow /></External></div></div></div>
@@ -116,7 +116,7 @@ function ClientStories() {
 }
 function Home() {
   return <>
-    <section className="hero" aria-labelledby="hero-title"><div className="wrap hero-grid"><div className="hero-copy"><p className="eyebrow"><span className="gold-line" /> St. Peter Traditional Life Plans</p><h1 id="hero-title">Plan ahead<br />with <em>confidence.</em></h1><p className="hero-description">Thoughtful choices for the people you love. Explore St. Peter life plans with personal guidance from Khessa, your Unit Manager.</p><div className="hero-actions"><Chat /><a className="button outline" href="#st-peter">Explore life plans <span aria-hidden="true">↓</span></a></div><div className="hero-person"><span className="tiny-rule" aria-hidden="true" /><p><strong>Khessa Daabay</strong><span>St. Peter · Unit Manager</span></p></div></div>
+    <section className="hero" aria-labelledby="hero-title"><div className="wrap hero-grid"><div className="hero-copy"><p className="eyebrow"><span className="gold-line" /> St. Peter Traditional Life Plans</p><h1 id="hero-title">Plan ahead<br />with <em>confidence.</em></h1><p className="hero-description">Thoughtful choices for the people you love. Explore St. Peter life plans with personal guidance from Khessa, your Unit Manager.</p><div className="hero-actions"><a className="button primary" href="#st-peter">Explore life plans <span aria-hidden="true">↓</span></a><Chat className="button outline" /></div><div className="hero-person"><span className="tiny-rule" aria-hidden="true" /><p><strong>Khessa Daabay</strong><span>St. Peter · Unit Manager</span></p></div></div>
       <div className="hero-portrait"><img src="/images/profile/khessa-800.webp" srcSet="/images/profile/khessa-480.webp 480w, /images/profile/khessa-800.webp 800w, /images/profile/khessa-1086.webp 1086w" sizes="(max-width: 700px) 95vw, 45vw" alt="Khessa Daabay, St. Peter Unit Manager, in a black blazer." width="1086" height="1448" fetchPriority="high" /><div className="portrait-caption"><span className="caption-icon" aria-hidden="true">✳</span><p>Personal guidance.<br /><strong>At your own pace.</strong></p></div><span className="portrait-label">Here to help you plan.</span></div>
     </div><div className="wrap hero-foot"><p>Personal profile · Cagayan de Oro City</p><External href={links.official}>Explore St. Peter’s official information <Arrow /></External></div></section>
     <div className="intro-strip"><div className="wrap intro-grid"><div><span>01</span><p>Understand your options<small>Compare the details clearly.</small></p></div><div><span>02</span><p>Find your payment schedule<small>Choose a period and frequency.</small></p></div><div><span>03</span><p>Speak with Khessa<small>Get answers before you apply.</small></p></div></div></div>
@@ -126,8 +126,8 @@ function Home() {
     <section id="how-it-works" className="section process-section" aria-labelledby="process-title"><div className="wrap"><div className="section-head"><div><p className="eyebrow">04 / How it works</p><h2 id="process-title">One thoughtful step<br /><em>at a time.</em></h2></div><p>Start with a conversation. Take the time you need to understand the plan and make a choice that suits your family.</p></div><ol className="steps"><li><span className="step-number">01</span><h3>Explore your options</h3><p>Compare the available plans, casket details, and payment schedules.</p><a href="#st-peter">Browse life plans <span aria-hidden="true">↗</span></a></li><li><span className="step-number">02</span><h3>Talk to Khessa</h3><p>Ask your questions and discuss which option fits your needs and budget.</p><External href={links.messenger}>Start a conversation <Arrow /></External></li><li><span className="step-number">03</span><h3>Complete your application</h3><p>Review the official terms, then follow the designated application channel.</p><a href="#application">See application steps <span aria-hidden="true">↗</span></a></li></ol></div></section>
     <section id="application" className="section application-section" aria-labelledby="application-title"><div className="wrap application-grid"><div><p className="eyebrow">When you’re ready</p><h2 id="application-title">Your next step,<br /><em>with guidance.</em></h2><p>Speak with Khessa first to confirm your plan, payment schedule, and the official terms. When you’re ready, continue to her designated application form.</p><External href={links.application} className="button primary">Start application <Arrow /></External><p className="referral">Referral code <strong>KHES6283</strong></p></div><div className="application-note"><h3>Before you open the form</h3><ul><li>The Tally form collects personal details and supporting uploads, including identification, signatures, and a payment receipt.</li><li>Ask Khessa for the privacy notice, the intended recipient, and retention details before uploading documents.</li><li>The external form shows payment QR codes. Confirm payee authorization with St. Peter before using them. Keep your official receipt.</li></ul><p>This profile has no document upload or payment form.</p><External href={links.pay}>St. Peter’s official payment channel <Arrow /></External></div></div></section>
     <section id="faqs" className="section faq-section" aria-labelledby="faq-title"><div className="wrap faq-grid"><div className="faq-intro"><p className="eyebrow">05 / Helpful answers</p><h2 id="faq-title">Clarity before<br /><em>commitment.</em></h2><p>Start here, then ask Khessa about the details that apply to you.</p><External href={links.faq} className="text-link">Official St. Peter FAQs <Arrow /></External></div><div className="faq-list">{faqs.map(([question, answer], i) => <details key={question}><summary><span className="faq-number">{String(i + 1).padStart(2, '0')}</span><span>{question}</span><span className="faq-plus" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div></section>
-    <section id="contact" className="contact-section" aria-labelledby="contact-title"><div className="wrap contact-grid"><div><p className="eyebrow">Let’s plan together</p><h2 id="contact-title">A conversation today.<br /><em>A more informed tomorrow.</em></h2><p>Tell Khessa what you’re looking for. Get help comparing plans and understanding the next steps.</p><Chat className="button light">Chat with Khessa</Chat></div><div className="contact-direct"><span className="contact-label">Your personal contact</span><h3>Khessa Daabay</h3><p>St. Peter · Unit Manager</p><a href={links.email}>kdaabay.sa2@gmail.com <Arrow /></a><External href={links.facebook}>St. Peter Life Plan with Khessa <Arrow /></External><span className="contact-small">For official account, payment, or claim assistance, <External href={links.support}>contact St. Peter</External>.</span></div></div></section>
-    <div className="mobile-sticky"><Chat className="button primary" /><External href={links.application} className="button outline">Get a plan</External></div>
+    <section id="contact" className="contact-section" aria-labelledby="contact-title"><div className="wrap contact-grid"><div><p className="eyebrow">Let’s plan together</p><h2 id="contact-title">A conversation today.<br /><em>A more informed tomorrow.</em></h2><p>Tell Khessa what you’re looking for. Get help comparing plans and understanding the next steps.</p><Chat className="button outline">Chat with Khessa</Chat></div><div className="contact-direct"><span className="contact-label">Your personal contact</span><h3>Khessa Daabay</h3><p>St. Peter · Unit Manager</p><a href={links.email}>kdaabay.sa2@gmail.com <Arrow /></a><External href={links.facebook}>St. Peter Life Plan with Khessa <Arrow /></External><span className="contact-small">For official account, payment, or claim assistance, <External href={links.support}>contact St. Peter</External>.</span></div></div></section>
+    <div className="mobile-sticky"><External href={links.application} className="button primary">Get a plan</External><Chat className="button outline" /></div>
   </>
 }
 const legalContent = {
