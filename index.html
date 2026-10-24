@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang="en" data-theme="dark">
+<!doctype html><html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -10,9 +9,9 @@
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href="/fonts/geist-var.woff2" as="font" type="font/woff2" crossorigin />
-    <!-- The phone bar's mark is the mobile LCP; dark is the default theme, so its mark loads first. -->
-    <link rel="preload" href="/images/brand/mark-light-96.webp" as="image" fetchpriority="high" />
-    <meta name="theme-color" content="#0A0A0A" />
+    <!-- The light theme is the default, so preload its St. Peter mark. -->
+    <link rel="preload" href="/images/brand/mark-96.webp" as="image" fetchpriority="high" />
+    <meta name="theme-color" content="#F0F8FF" />
 
     <meta property="og:type" content="website" />
     <!-- Link previews: absolute URLs on your domain. Re-render og-image.png with scripts/make-og-image.mjs. -->
@@ -27,13 +26,13 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://example.com/og-image.png" />
 
-    <!-- Dark by default; a saved light pick is applied before first paint, so it never flashes dark first.
+    <!-- Light by default; a saved dark pick is applied before first paint, so it never flashes dark first.
          Mirrors src/lib/theme.ts. The deploy CSP allows this script by hash: after any edit run npm run csp:check. -->
     <script>
       try {
-        if (localStorage.getItem('pv2-theme') === 'light') {
-          document.documentElement.dataset.theme = 'light'
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#F0F8FF')
+        if (localStorage.getItem('pv2-theme') === 'dark') {
+          document.documentElement.dataset.theme = 'dark'
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0A0A0A')
         }
       } catch (e) {}
     </script>
