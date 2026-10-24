@@ -22,9 +22,9 @@ import {
  * (see the comment on `.hero__title` there).
  */
 export const homeHero = {
-  headlineThin: 'Your headline.',
-  headlineBold: 'Make it yours.',
-  subhead: 'PLACEHOLDER - tell me what to put here: one sentence on who you help and the result you get them.',
+  headlineThin: 'Khessa Daabay',
+  headlineBold: 'St. Peter - Unit Manager',
+  subhead: 'Personal profile of Khessa Daabay, St. Peter - Unit Manager.',
   cta: { label: 'Get in touch', to: '/#contact' },
 }
 
