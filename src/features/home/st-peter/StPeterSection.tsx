@@ -61,6 +61,32 @@ const frequencies: { label: string; key: 'annual' | 'semiAnnual' | 'quarterly' |
   { label: 'Monthly', key: 'monthly' },
 ]
 
+
+const clientPhotos = [
+  {
+    src: '/images/client-stories/st-gregory-5-year.jpg',
+    alt: 'Khessa Daabay celebrating with a client whose St. Gregory plan has a 5-year monthly payment schedule.',
+    shape: 'wide',
+  },
+  {
+    src: '/images/client-stories/st-gregory-7-year.jpg',
+    alt: 'A client holding application papers for a St. Gregory plan with a 7-year monthly payment schedule.',
+    shape: 'square',
+  },
+  {
+    src: '/images/client-stories/st-george-7-year.jpg',
+    alt: 'Khessa Daabay with a client who chose a St. George plan with a 7-year monthly payment schedule.',
+    shape: 'wide',
+  },
+  {
+    src: '/images/client-stories/st-gregory-5-year-client.jpg',
+    alt: 'Khessa Daabay celebrating a client’s St. Gregory plan with a 5-year monthly payment schedule.',
+    shape: 'square',
+  },
+]
+
+const clientPhotoRows = [clientPhotos, [...clientPhotos].reverse()]
+
 export function StPeterSection() {
   return (
     <section id="st-peter" className="sp" aria-labelledby="sp-title">
@@ -140,6 +166,41 @@ export function StPeterSection() {
           </p>
         </aside>
       </div>
+
+      <section className="sp__stories" aria-labelledby="sp-stories-title">
+        <header className="sp__stories-head">
+          <p className="sp__eyebrow"><span>Client stories</span><i aria-hidden /></p>
+          <h3 id="sp-stories-title">Celebrating families and their plan choices.</h3>
+        </header>
+        <div className="sp__marquee" role="group" aria-label="Client celebration photos">
+          {clientPhotoRows.map((photos, rowIndex) => (
+            <div
+              className={`sp__marquee-row sp__marquee-row--${rowIndex + 1}`}
+              key={rowIndex}
+              role="group"
+              aria-label={`Client photos, row ${rowIndex + 1}`}
+              tabIndex={0}
+            >
+              <div className="sp__marquee-track">
+                <div className="sp__marquee-set">
+                  {photos.map((photo) => (
+                    <figure className={`sp__story-tile sp__story-tile--${photo.shape}`} key={photo.src}>
+                      <img src={photo.src} alt={photo.alt} width="1200" height="1200" loading="lazy" decoding="async" />
+                    </figure>
+                  ))}
+                </div>
+                <div className="sp__marquee-set" aria-hidden="true">
+                  {photos.map((photo) => (
+                    <figure className={`sp__story-tile sp__story-tile--${photo.shape}`} key={`copy-${photo.src}`}>
+                      <img src={photo.src} alt="" width="1200" height="1200" loading="lazy" decoding="async" />
+                    </figure>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
     </section>
   )
 }
