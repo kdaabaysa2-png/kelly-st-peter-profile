@@ -5,10 +5,10 @@ import type { Credential, SocialLink } from './schema'
  * these values, so changing them here changes them everywhere.
  */
 export const site = {
-  name: 'Your Name',
-  brand: 'Your Brand',
+  name: 'Khessa Daabay',
+  brand: 'St. Peter',
   /** The brand name as the sidebar logo shows it: the second part takes the accent color. */
-  brandParts: ['Your', 'Brand'],
+  brandParts: ['St. ', 'Peter'],
   /** Your logo mark, one file per theme (`light` = for light backgrounds). The 96px copies are the
    *  sidebar header (shown at 32-36px); the full ones are the Work logo faces. */
   logo: {
@@ -19,7 +19,7 @@ export const site = {
   },
   /** The live address, no trailing slash. Canonical URLs, the sitemap and the JSON-LD use it. */
   url: 'https://example.com',
-  role: 'Your Role, Your Title',
+  role: 'St. Peter - Unit Manager',
   email: 'you@example.com',
   emailSubject: 'Project inquiry',
   replyPromise: 'Reply within one business day.',
@@ -29,9 +29,9 @@ export const site = {
   /** Your clock, shown live at the top of the sidebar. Any IANA zone, e.g. 'America/New_York'. */
   timeZone: 'UTC',
   timePlace: 'in Your City',
-  avatar: { src: '/images/profile/avatar.webp', alt: 'Your Name', width: 400, height: 400 },
+  avatar: { src: '/images/profile/khessa-daabay.png', alt: 'Khessa Daabay', width: 1086, height: 1448 },
   /** The sidebar picture (112px, 44px on the rail). */
-  avatarSmall: '/images/profile/avatar-224.webp',
+  avatarSmall: '/images/profile/khessa-avatar.png',
 } as const
 
 /** A credential shown in About and the sidebar check. Delete the `image` to show it without a badge. */
