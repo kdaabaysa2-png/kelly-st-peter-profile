@@ -54,7 +54,7 @@ const plans = [
   },
 ]
 
-const frequencies = [
+const frequencies: { label: string; key: 'annual' | 'semiAnnual' | 'quarterly' | 'monthly' }[] = [
   { label: 'Annual', key: 'annual' },
   { label: 'Semi-annual', key: 'semiAnnual' },
   { label: 'Quarterly', key: 'quarterly' },
