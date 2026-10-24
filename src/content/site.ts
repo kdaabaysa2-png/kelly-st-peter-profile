@@ -12,10 +12,10 @@ export const site = {
   /** Your logo mark, one file per theme (`light` = for light backgrounds). The 96px copies are the
    *  sidebar header (shown at 32-36px); the full ones are the Work logo faces. */
   logo: {
-    light: '/images/brand/mark.webp',
-    dark: '/images/brand/mark-light.webp',
-    headerLight: '/images/brand/mark-96.webp',
-    headerDark: '/images/brand/mark-light-96.webp',
+    light: '/images/brand/st-peter-mark.svg',
+    dark: '/images/brand/st-peter-mark.svg',
+    headerLight: '/images/brand/st-peter-mark.svg',
+    headerDark: '/images/brand/st-peter-mark.svg',
   },
   /** The live address, no trailing slash. Canonical URLs, the sitemap and the JSON-LD use it. */
   url: 'https://example.com',
