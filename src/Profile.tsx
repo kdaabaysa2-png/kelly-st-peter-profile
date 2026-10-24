@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const links = {
   facebook: 'https://www.facebook.com/cwb.salesagent1',
@@ -87,20 +87,8 @@ function Footer() {
 function PlanComparison() {
   const [years, setYears] = useState(5)
   const [frequency, setFrequency] = useState<Frequency>('monthly')
-  const [inquiry, setInquiry] = useState('')
-  const [copyStatus, setCopyStatus] = useState('')
-  const lastTrigger = useRef<HTMLButtonElement | null>(null)
-  const closeInquiry = () => { setInquiry(''); lastTrigger.current?.focus() }
   const chosen = frequencies.find(f => f.key === frequency)!
   const visible = plans.filter(p => p.schedules.some(s => s.years === years))
-  const ask = (plan: Plan, schedule: Schedule) => {
-    setCopyStatus('')
-    setInquiry(`Hi Khessa, I would like to ask about the ${plan.name} plan, payable over ${schedule.years} years with ${chosen.label.toLowerCase()} installments of ${money(schedule[frequency])}. Please help me confirm the current quote, services, and terms. Thank you.`)
-  }
-  const copy = async () => {
-    try { await navigator.clipboard.writeText(inquiry); setCopyStatus('Message copied. Paste it into Messenger.') }
-    catch { setCopyStatus('Select the message below and copy it, then paste it into Messenger.') }
-  }
   return <section id="st-peter" className="section plans-section" aria-labelledby="plans-title"><div className="wrap">
     <div className="section-head"><div><p className="eyebrow">01 / Explore your options</p><h2 id="plans-title">A plan that fits<br /><em>your family.</em></h2></div><p>Start with the details that matter to you. Compare the casket, payment period, and installment schedule at your own pace.</p></div>
     <div className="comparison-controls"><fieldset><legend>Payment period</legend><div className="segmented">{[5, 7].map(n => <button key={n} type="button" aria-pressed={years === n} onClick={() => setYears(n)}>{n} years to pay</button>)}</div></fieldset>
@@ -113,11 +101,11 @@ function PlanComparison() {
         <div className="plan-content"><p className="plan-material">{plan.material}</p><h3>{plan.name}</h3><p className="plan-detail">{plan.lid}</p><div className="price"><strong>{money(schedule[frequency])}</strong><span> / {chosen.period}</span><small>{years} years to pay</small></div>
         <p className="contract-price">Contract price <strong>{money(schedule.contract)}</strong></p>
         <details className="schedule-details"><summary>View all payment frequencies <span aria-hidden="true">+</span></summary><dl>{frequencies.map(f => <div key={f.key}><dt>{f.label}</dt><dd>{money(schedule[f.key])}</dd></div>)}</dl><p className="fineprint">The contract price and total installments differ by payment frequency. Review your selected schedule before applying.</p></details>
-        <button className="button outline plan-ask" onClick={e => { lastTrigger.current = e.currentTarget; ask(plan, schedule) }} aria-label={`Ask Khessa about ${plan.name}`}>Ask Khessa about this plan <Arrow /></button>
+        <External href={links.application} className="button outline plan-ask">Buy this plan <Arrow /></External>
       </div></article>
     })}</div>
     <div className="source-note"><span className="note-icon" aria-hidden="true">i</span><div><p>Clear rates. Informed choices.</p><p>Rates checked against St. Peter’s official materials on 24 October 2026. Prices, benefits, eligibility, and availability are subject to current official terms. Confirm your quote and Life Plan Agreement before applying.</p><div className="text-links"><External href={links.fiveYear}>5-year brochure <Arrow /></External><External href={links.sevenYear}>7-year brochure <Arrow /></External><External href={links.official}>Official plan listings <Arrow /></External></div></div></div>
-    {inquiry && <div className="inquiry-backdrop" onClick={e => { if (e.target === e.currentTarget) closeInquiry() }}><section className="inquiry-dialog" role="dialog" aria-modal="true" aria-labelledby="inquiry-title" onKeyDown={e => { if (e.key === 'Escape') closeInquiry(); if (e.key === 'Tab') { const focusables = Array.from(e.currentTarget.querySelectorAll<HTMLElement>('button,a[href],textarea')); const first = focusables[0]; const last = focusables[focusables.length - 1]; if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last?.focus() } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first?.focus() } } }}><button className="dialog-close" onClick={closeInquiry} aria-label="Close inquiry">×</button><p className="eyebrow">Your next step</p><h3 id="inquiry-title">Let’s talk about your plan.</h3><p>Copy this message, then paste it into your conversation with Khessa.</p><label htmlFor="inquiry-message">Your inquiry message</label><textarea id="inquiry-message" readOnly value={inquiry} autoFocus rows={5} onFocus={e => e.target.select()} /><p className="copy-status" role="status">{copyStatus}</p><div className="dialog-actions"><button className="button outline" onClick={copy}>Copy message</button><Chat className="button primary">Open Messenger</Chat></div><button className="dialog-done" onClick={closeInquiry}>Back to plans</button></section></div>}
+
   </div></section>
 }
 function ClientStories() {
@@ -139,7 +127,7 @@ function Home() {
     <section id="application" className="section application-section" aria-labelledby="application-title"><div className="wrap application-grid"><div><p className="eyebrow">When you’re ready</p><h2 id="application-title">Your next step,<br /><em>with guidance.</em></h2><p>Speak with Khessa first to confirm your plan, payment schedule, and the official terms. When you’re ready, continue to her designated application form.</p><External href={links.application} className="button primary">Start application <Arrow /></External><p className="referral">Referral code <strong>KHES6283</strong></p></div><div className="application-note"><h3>Before you open the form</h3><ul><li>The Tally form collects personal details and supporting uploads, including identification, signatures, and a payment receipt.</li><li>Ask Khessa for the privacy notice, the intended recipient, and retention details before uploading documents.</li><li>The external form shows payment QR codes. Confirm payee authorization with St. Peter before using them. Keep your official receipt.</li></ul><p>This profile has no document upload or payment form.</p><External href={links.pay}>St. Peter’s official payment channel <Arrow /></External></div></div></section>
     <section id="faqs" className="section faq-section" aria-labelledby="faq-title"><div className="wrap faq-grid"><div className="faq-intro"><p className="eyebrow">05 / Helpful answers</p><h2 id="faq-title">Clarity before<br /><em>commitment.</em></h2><p>Start here, then ask Khessa about the details that apply to you.</p><External href={links.faq} className="text-link">Official St. Peter FAQs <Arrow /></External></div><div className="faq-list">{faqs.map(([question, answer], i) => <details key={question}><summary><span className="faq-number">{String(i + 1).padStart(2, '0')}</span><span>{question}</span><span className="faq-plus" aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div></section>
     <section id="contact" className="contact-section" aria-labelledby="contact-title"><div className="wrap contact-grid"><div><p className="eyebrow">Let’s plan together</p><h2 id="contact-title">A conversation today.<br /><em>A more informed tomorrow.</em></h2><p>Tell Khessa what you’re looking for. Get help comparing plans and understanding the next steps.</p><Chat className="button light">Chat with Khessa</Chat></div><div className="contact-direct"><span className="contact-label">Your personal contact</span><h3>Khessa Daabay</h3><p>St. Peter · Unit Manager</p><a href={links.email}>kdaabay.sa2@gmail.com <Arrow /></a><External href={links.facebook}>St. Peter Life Plan with Khessa <Arrow /></External><span className="contact-small">For official account, payment, or claim assistance, <External href={links.support}>contact St. Peter</External>.</span></div></div></section>
-    <div className="mobile-sticky"><Chat className="button primary" /><a className="button outline" href="#st-peter">Compare plans</a></div>
+    <div className="mobile-sticky"><Chat className="button primary" /><External href={links.application} className="button outline">Get a plan</External></div>
   </>
 }
 const legalContent = {
