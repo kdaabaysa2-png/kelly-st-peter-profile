@@ -24,8 +24,8 @@ function staticPages(): Plugin {
       ]) {
         const html = home.replace(/<title>.*?<\/title>/, `<title>${title} | Khessa Daabay</title>`)
           .replace(/(<meta name="description" content=")[^"]+/, `$1${description}`)
-          .replace(/(<link rel="canonical" href=")[^"]+/, `$1https://kelly-st-peter-profile.vercel.app/${path}`)
-          .replace(/(<meta property="og:url" content=")[^"]+/, `$1https://kelly-st-peter-profile.vercel.app/${path}`)
+          .replace(/(<link rel="canonical" href=")[^"]+/, `$1https://st-peter-by-khessa.vercel.app/${path}`)
+          .replace(/(<meta property="og:url" content=")[^"]+/, `$1https://st-peter-by-khessa.vercel.app/${path}`)
           .replace(/(<meta property="og:title" content=")[^"]+/, `$1${title} | Khessa Daabay`)
           .replace(/(<meta property="og:description" content=")[^"]+/, `$1${description}`)
         mkdirSync(resolve(outDir, path!), { recursive: true })

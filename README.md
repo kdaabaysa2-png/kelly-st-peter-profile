@@ -2,7 +2,7 @@
 
 Personal professional profile for Khessa Daabay. This is independently maintained and is not St. Peter’s corporate website.
 
-Production: https://kelly-st-peter-profile.vercel.app/
+Production: https://st-peter-by-khessa.vercel.app/
 
 ## Development
 
