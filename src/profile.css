@@ -21,3 +21,10 @@
 
 .faq-number{color:#7f6a52}.plan-index{color:#746257}.hero-description{font-size:16px}.section-head>p,.about-copy>p:not(.eyebrow),.application-grid>div>p:not(.eyebrow){font-size:14px}.faq-list details>p{font-size:13px}
 @media(max-width:700px){.hero-description,.section-head>p,.section-head>div+div p,.about-copy>p:not(.eyebrow),.stories-section .section-head>div+div p,.application-grid>div>p:not(.eyebrow),.faq-intro>p:not(.eyebrow),.faq-list details>p,.legal-page section p{font-size:14px}.about-copy>.fineprint{font-size:11px!important}.about-copy>.service-location{font-size:11px!important}.application-note>p{font-size:11px!important}.steps p,.contact-section p{font-size:13px}.application-note li{font-size:12px}.plan-detail,.schedule-details{font-size:12px}.faq-list summary{font-size:13px}.source-note p+p{font-size:11px}.contact-small{font-size:11px}}
+
+/* Frame the supplied artwork around the complete emblem, tagline, and wordmark.
+   The image retains its original colors and aspect ratio. */
+.st-peter-logo-frame{display:block;position:relative;width:94px;aspect-ratio:340 / 279;flex:0 0 auto;overflow:hidden}
+.st-peter-logo-frame img{position:absolute;width:162.941176%;max-width:none;height:auto;left:-31.470588%;top:-44.444444%;object-fit:contain}
+@media(max-width:850px){.st-peter-logo-frame{width:82px}}
+@media(max-width:700px){.st-peter-logo-frame{width:66px}.header-inner{gap:14px}}
