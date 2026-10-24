@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://kelly-st-peter-profile.vercel.app/sitemap.xml

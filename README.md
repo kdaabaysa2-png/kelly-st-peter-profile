@@ -1,113 +1,74 @@
-# Portfolio Template V2
+# Khessa Daabay · St. Peter Unit Manager
 
-A personal portfolio with a floating sidebar that folds into an icon rail, a "signal flow" line background, and one long Home page built from scroll scenes: a reading-band manifesto, a live flow diagram that builds as you scroll, a bento of work chapters that open as sheets with their own URLs, a stacked services deck, an About floor, a proof ledger, a product showcase with a film and walk-through rooms, and a contact plate. Separate phone layout with a top bar and a swipe-to-close drawer. Light and dark themes.
+Personal professional profile for Khessa Daabay, also known as Kelly. This is independently maintained and is not St. Peter’s corporate website.
 
-Every piece of content is a placeholder. You swap in your own.
+Production: https://kelly-st-peter-profile.vercel.app/
 
-Stack: Vite 8, React 19, TypeScript (strict), React Router 8, Tailwind CSS v4 + CSS custom properties, GSAP + ScrollTrigger, Lenis, three.js, Phosphor icons, Geist + IBM Plex Mono (self-hosted).
+## Development
 
-## What it looks like
+Use the existing Node, React, TypeScript, and Vite stack.
 
-Straight from this repo, placeholders and all.
+- `npm ci`
+- `npm run dev`
+- `npm run lint`
+- `npm run build`
+- `npm run preview`
 
-**Desktop** - the floating sidebar and the Home hero.
+The production output is `dist/`. The existing Kelly-owned GitHub repository remains connected to her Vercel project. No database, paid service, or analytics was added.
 
-![Desktop, dark theme: floating sidebar on the left with profile, socials and navigation, and a two-line headline](docs/screenshots/desktop.png)
+## Source map
 
-**Phone** - top bar, drawer navigation, the same sections stacked. Light and dark.
+- `src/main.tsx`: React entry point.
+- `src/Profile.tsx`: profile content, contact links, exact plan schedules, consultation message, accessible navigation, client gallery, FAQs, privacy notice, terms, and error state.
+- `src/profile.css`: light burgundy and ivory design, responsive layouts, keyboard focus, photo motion, and reduced-motion support.
+- `index.html`: home metadata, canonical URL, and social sharing image.
+- `vite.config.ts`: build settings, legal page metadata, version file, and removal of retired portfolio assets from the published output.
+- `vercel.json`: existing-host deployment support, security headers, clean URLs, and redirects for old profile links.
+- `public/images/profile/`: authentic supplied corporate photograph.
+- `public/images/client-stories/`: supplied client celebration graphics.
+- `public/og-khessa.png`, `favicon.svg`, `apple-touch-icon.png`: personal sharing and icon assets.
+- `public/sitemap.xml` and `robots.txt`: indexable routes.
 
-<p>
-  <img src="docs/screenshots/mobile-light.png" alt="Phone, light theme: top bar and the Home headline" width="300">
-  &nbsp;&nbsp;
-  <img src="docs/screenshots/mobile-dark.png" alt="Phone, dark theme: the same Home screen on near-black" width="300">
-</p>
+## Product data sources
 
-## Run it
+All listed prices and installment figures were checked on 24 October 2026. Rates are copied from the schedules. No missing figures were calculated.
 
-Needs Node 20.19+ (or 22.12+).
+- Five-year brochure: https://online.stpeter.com.ph/PDF/TradPlans.pdf
+- Seven-year brochure: https://online.stpeter.com.ph/PDF/TradPlans7years.pdf
+- Live official listings: https://online.stpeter.com.ph/Product/Index/LP
+- Official support: https://online.stpeter.com.ph/Home/ContactUs
+- Official payment channel: https://online.stpeter.com.ph/Paybill/Index
 
-```bash
-npm install
-npm run dev        # http://localhost:5190
-npm run build      # typecheck + production build to dist/ (also writes sitemap.xml, llms.txt, version.json)
-npm run preview    # serve the build on http://localhost:5191
-npm run lint       # ESLint with the TypeScript parser and the React hooks rules
-```
+The five-year brochure describes St. Claire as a metal casket with a single top, half-lid cover, and half glass. This corrects the old profile’s full-lid description. Seven-year options are shown only for St. George and St. Gregory. Benefits and account-specific conditions require the current Life Plan Agreement and St. Peter confirmation.
 
-## Make it yours
+## Contact and data handling
 
-Every spot that needs your content says **PLACEHOLDER** and describes what goes there. Edit the files yourself, or open the repo in an AI coding tool and tell it what to put in each spot. All copy lives in `src/content/` as typed data, so you never have to touch a component to change words.
+- Facebook: https://www.facebook.com/cwb.salesagent1
+- Messenger: https://m.me/cwb.salesagent1
+- Email: kdaabay.sa2@gmail.com
+- Designated external application: https://tally.so/r/Y5AlPv
+- Agent code supplied by the owner: CAGAYA23SA100098
+- Referral code supplied by the owner: KHES6283
 
-| What | Where |
-|---|---|
-| Name, brand, role, email, location, clock time zone, photo, logo, credential, socials, off-site links | `src/content/site.ts` (start here) |
-| Search-result title and description, link preview | the Home entry in `src/app/routes.ts`, and the head of `index.html` (for crawlers that do not run JavaScript) |
-| Home headline, manifesto statement, section titles, Work chapters | `src/content/home.ts` |
-| The builds inside each Work chapter (sites, funnel pages, apps, side projects) | `src/content/work.ts` |
-| The flow diagram (stages, links, the lines under each stage) | `src/content/automation.ts` |
-| Services, method, About, tool logos | `src/content/services.ts`, `method.ts`, `about.ts`, `tools.ts` |
-| Proof (client accounts, video clips, quotes) | `src/content/proof.ts` + videos in `public/media/` |
-| Showcase (one product: film, stats, rooms, FAQ) | `src/content/showcase.ts` + `public/media/showcase-film.mp4` |
-| Contact page, FAQs, Privacy and Terms | `src/content/contact.ts`, `faqs.ts`, `legal.ts` |
-| Pictures | `public/images/` - replace a file with yours at the same size, or point the content entry at a new file |
-| Demo pages people can open live | `public/demos/` (`sites/`, `funnels/`, `plans/`), linked from `work.ts` |
-| Pages and the sidebar menu | `src/app/routes.ts` (one entry per page) |
-| Order of the Home sections | `src/features/home/sections.ts` (one line per section) |
-| Colors, shadows, motion | `src/styles/tokens.css` (one accent color, light and dark) |
-| Share image | `public/og-image.png` - re-render it from your own hero with `node scripts/make-og-image.mjs` while `npm run dev` runs |
-| Favicon | `public/favicon.png`, `public/apple-touch-icon.png` |
+The website does not send inquiries, collect IDs, accept payments, or store applications. A plan inquiry produces a copyable message for the visitor to paste into Messenger. No message is sent automatically.
 
-Then set your domain in `site.url` and in the `og:` tags of `index.html`. The sitemap, `robots.txt` and `llms.txt` are written from it at build time.
+The external Tally form requests personal details, valid ID, signature specimens, and a payment receipt. It shows payment QR codes. No privacy notice was visible during the read-only review. The site instructs visitors to ask for the privacy notice, recipient, retention details, and official payment authorization before uploading or paying. Form ownership, privacy process, and QR payees require owner confirmation. These were not inferred or changed.
 
-### Your own pictures
+The public Facebook page and supplied form identify Cagayan de Oro City. Agent status and supplied codes have not been independently confirmed with St. Peter. Codes are presented as contact details rather than licensing proof. No credentials, quotes, awards, service guarantees, or customer statistics were invented.
 
-Pictures are served with a year-long cache in the nginx example, so give a changed picture a new file name. Where a picture has smaller copies for phones (a `srcSet` in the content), make them with:
+Gallery photos were supplied for publication in the preceding work. The document shown in one photograph is covered in the interface. Original photo files remain in repository history. The owner remains responsible for client publication consent and any requested source removal.
 
-```bash
-node scripts/make-image-variants.mjs public/images/covers/my-site.webp 480,640,960
-```
+## Verification
 
-That writes `public/images/covers/480/my-site.webp` and the others next to it, the layout the content files expect.
-
-### The placeholders
-
-Every placeholder picture, video and demo page comes from `npm run placeholders` (`scripts/make-placeholders.mjs`), driven by the lists in `scripts/placeholders/*.json`. You never need it once your own files are in, but it shows the exact size every slot expects.
-
-## Checks
-
-Each part of the site has an end-to-end check that drives it in a real browser (Playwright) and prints PASS / FAIL lines. Start `npm run dev`, then run any of them:
-
-```bash
-npx playwright install chromium   # once
-npm run check:sidebar             # also check:home, check:manifesto, check:automation, check:work-sheet,
-                                  # check:services, check:about, check:showcase, check:proof, check:contact, check:background
-```
-
-They read `BASE` (default `http://localhost:5190`). Screenshots land in `scripts/out/`. On the production build: `npm run build && npm run preview`, then `BASE=http://localhost:5191 node scripts/audit/responsive.mjs` (11 widths, no sideways scroll) and `node scripts/audit/csp-harness.mjs` (every route under the production Content-Security-Policy).
-
-## Deploy
-
-It is a static single-page app: `npm run build` and serve `dist/` with every unknown path falling back to `index.html`.
-
-`deploy/` holds an nginx example with strict security headers: `nginx.conf` (the site), `headers.conf` (CSP, HSTS and friends for the app) and `demos-headers.conf` (looser rules for the standalone demo pages). The CSP allows the one inline theme script in `index.html` by its hash. If you edit that script, run `npm run csp:check` and put the hash it prints into `deploy/headers.conf`.
-
-## Notes
-
-- **Headline size.** The Home hero sizes its bold line in container units so it fills the column at any width. The number is measured on the current words. When you change the headline, follow the comment on `.hero__title` in `src/features/home/hero/hero.css` to re-measure.
-- **Motion.** Desktop (1024px+, a mouse, motion allowed) gets Lenis smooth scrolling and GSAP scroll scenes; phones keep native scroll and use CSS scroll timelines. Everything has a reduced-motion version. Pinned sections use CSS `position: sticky`, never ScrollTrigger pins.
-- **Background.** three.js loads after the first interaction (or a few seconds after load), as its own chunk, so it never slows the first paint. Never put a `backdrop-filter` over it: blur over an animated canvas is the most expensive thing a page can do.
-- **Work chapters** open as sheets with their own URLs (`/work/<chapter>`), their own title and description, and structured data. Add a chapter in `home.ts` and the bento, the sheet, the sitemap and `llms.txt` follow. The bento layout is keyed by chapter id in `src/features/home/work/work.css` (`grid-template-areas`).
-- **Contact form** opens the visitor's own email app with the message filled in (`src/lib/mail.ts`). Nothing is sent or stored by the site. To post to a backend instead, replace the hand-off in `ContactForm.tsx`.
-- **Theme.** Dark by default; a visitor's light pick is applied before first paint by the small script in `index.html`.
+- TypeScript and Vite production build passed.
+- ESLint passed without warnings.
+- Responsive browser checks at 320, 375, 390, 428, 768, 1024, and 1440 pixels showed no horizontal page overflow and no missing in-page anchor targets.
+- Five-year and seven-year filters, quarterly frequency, plan-specific inquiry text, clipboard copy, Escape dismissal, and focus return were checked.
+- All 35 published numeric schedule values were matched to the official brochures.
+- The external application, professional Facebook page, email destination, and official links were reviewed. No application, payment, or message was submitted.
+- The Messenger short link resolves to the professional page’s conversation endpoint. The current browser requests a chat-restoration PIN before showing the conversation.
+- Reduced-motion and visible-focus rules are included. No OS preference was changed for testing.
 
 ## Credits
 
-- Icons: [Phosphor](https://phosphoricons.com) (MIT).
-- Fonts: [Geist](https://github.com/vercel/geist-font) and [IBM Plex Mono](https://github.com/IBM/plex), both SIL Open Font License 1.1 (license texts in `public/fonts/`).
-- Motion: [GSAP](https://gsap.com) and [Lenis](https://lenis.dev). Background: [three.js](https://threejs.org).
-
-## License
-
-[PolyForm Noncommercial 1.0.0](LICENSE), plus one extra permission: you can use it for **your own** portfolio, even if that portfolio promotes your paid services.
-
-What it does not allow without a commercial license: selling or reselling this template, or building portfolio sites for other people for payment. For a commercial license, email brewedops@gmail.com.
+Derived from https://github.com/brewed-ops/portfoliov2-template. Keep the original LICENSE. Geist is supplied under its included font license. Official product photographs and St. Peter naming identify the referenced products.
