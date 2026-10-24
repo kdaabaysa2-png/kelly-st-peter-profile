@@ -72,7 +72,7 @@ function Chat({ className = 'button primary', children = 'Chat with Kelly' }: { 
 function Header() {
   const [open, setOpen] = useState(false)
   return <header className="site-header"><div className="header-inner">
-    <a href="/" className="wordmark" aria-label="Khessa Daabay home"><span className="st-peter-logo-frame"><img src="/images/brand/st-peter-logo.png" alt="St. Peter — DeathCare Experts" width="554" height="554" /></span><span>Khessa Daabay<small>St. Peter · Unit Manager</small></span></a>
+    <a href="/" className="wordmark" aria-label="Khessa Daabay home"><span className="st-peter-logo-frame"><img src="/images/brand/st-peter-transparent.png" alt="St. Peter — DeathCare Experts" width="554" height="554" /></span><span>Khessa Daabay<small>St. Peter · Unit Manager</small></span></a>
     <button className="menu-toggle" aria-expanded={open} aria-controls="main-nav" onClick={() => setOpen(!open)}>{open ? 'Close' : 'Menu'} <span aria-hidden="true">{open ? '×' : '+'}</span></button>
     <nav id="main-nav" className={open ? 'navigation is-open' : 'navigation'} aria-label="Main navigation" onClick={() => setOpen(false)}>
       <a href="/#st-peter">Life plans</a><a href="/#about">Meet Kelly</a><a href="/#stories">Client stories</a><a href="/#faqs">FAQs</a><Chat className="button small primary" />
