@@ -167,7 +167,7 @@ export default function App() {
   useEffect(() => {
     if (path === '/privacy' || path === '/terms') {
       document.title = `${path === '/privacy' ? 'Privacy notice' : 'Website terms'} | Khessa Daabay`
-      document.querySelector('link[rel=canonical]')?.setAttribute('href', `https://kelly-st-peter-profile.vercel.app${path}`)
+      document.querySelector('link[rel=canonical]')?.setAttribute('href', `https://st-peter-by-khessa.vercel.app${path}`)
     } else if (path !== '/' && !['/about','/contact','/st-peter-plans'].includes(path)) {
       document.title = 'Page not found | Khessa Daabay'
       const noindex = document.createElement('meta'); noindex.name = 'robots'; noindex.content = 'noindex'; document.head.appendChild(noindex)
