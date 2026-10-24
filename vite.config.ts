@@ -1,4 +1,4 @@
-import { writeFileSync } from 'node:fs'
+import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath, URL } from 'node:url'
 import { createServer, defineConfig, type Plugin } from 'vite'
@@ -36,6 +36,7 @@ function sitemap(): Plugin {
         const { site } = (await server.ssrLoadModule('/src/content/site.ts')) as { site: { url: string } }
         const urls = sitemapPaths().map((path) => `  <url><loc>${site.url}${path}</loc></url>`)
         const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`
+        mkdirSync(outDir, { recursive: true })
         writeFileSync(join(outDir, 'sitemap.xml'), xml)
         writeFileSync(join(outDir, 'llms.txt'), llmsTxt())
         writeFileSync(join(outDir, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site.url}/sitemap.xml\n`)
