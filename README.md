@@ -1,6 +1,6 @@
 # Khessa Daabay · St. Peter Unit Manager
 
-Personal professional profile for Khessa Daabay, also known as Kelly. This is independently maintained and is not St. Peter’s corporate website.
+Personal professional profile for Khessa Daabay. This is independently maintained and is not St. Peter’s corporate website.
 
 Production: https://kelly-st-peter-profile.vercel.app/
 
@@ -14,7 +14,7 @@ Use the existing Node, React, TypeScript, and Vite stack.
 - `npm run build`
 - `npm run preview`
 
-The production output is `dist/`. The existing Kelly-owned GitHub repository remains connected to her Vercel project. No database, paid service, or analytics was added.
+The production output is `dist/`. The existing Khessa-owned GitHub repository remains connected to her Vercel project. No database, paid service, or analytics was added.
 
 ## Source map
 
