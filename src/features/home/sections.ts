@@ -5,6 +5,7 @@ import { AutomationSection } from './automation/AutomationSection'
 import { ManifestoSection } from './manifesto/ManifestoSection'
 import { ServicesSection } from './services/ServicesSection'
 import { WorkSection } from './work/WorkSection'
+import { StPeterSection } from './st-peter/StPeterSection'
 import { ShowcaseSection } from '@/features/showcase/ShowcasePage'
 import { ProofSection } from '@/features/proof/ProofPage'
 import { ContactSection } from '@/features/contact/ContactPage'
@@ -18,6 +19,7 @@ export type HomeSection = { id: string; Component: ComponentType }
 
 export const homeSectionList: HomeSection[] = [
   { id: 'hero', Component: HeroSection },
+  { id: 'st-peter', Component: StPeterSection },
   { id: 'manifesto', Component: ManifestoSection },
   { id: 'automation', Component: AutomationSection },
   { id: 'work', Component: WorkSection },
