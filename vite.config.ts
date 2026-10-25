@@ -2,6 +2,7 @@ import { readFileSync, mkdirSync, writeFileSync, readdirSync, rmSync } from 'nod
 import { resolve } from 'node:path'
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
+import { agents } from './src/agents.ts'
 
 // Give legal pages their own crawler-visible metadata while retaining the existing React app.
 function staticPages(): Plugin {
@@ -31,6 +32,28 @@ function staticPages(): Plugin {
         mkdirSync(resolve(outDir, path!), { recursive: true })
         writeFileSync(resolve(outDir, path!, 'index.html'), html)
       }
+      const teamPages: [string, string, string][] = [
+        ['team', 'Khessa Daabay Team & Careers', 'Meet Khessa Daabay’s team, explore career opportunities, and connect with a St. Peter Unit Manager in Cagayan de Oro.'],
+        ['team/agents', 'Meet Our Team | Khessa Daabay', 'Meet the public team contact for Khessa Daabay’s St. Peter life plan practice in Cagayan de Oro.'],
+        ['team/join', 'Join Khessa’s Team | Career Opportunities', 'Learn about the St. Peter Sales Counselor role, team guidance, and the application steps with Khessa Daabay.'],
+      ]
+      for (const agent of agents.filter(agent => agent.isActive)) {
+        teamPages.push([`team/agents/${agent.slug}`, `${agent.fullName} | Team Profile`, `Contact ${agent.fullName}, ${agent.role} in ${agent.location}, for plan guidance and team inquiries.`])
+      }
+      for (const [path, title, description] of teamPages) {
+        const canonical = `https://st-peter-by-khessa.vercel.app/${path}`
+        const html = home.replace(/<title>.*?<\/title>/, `<title>${title}</title>`)
+          .replace(/(<meta name="description" content=")[^"]+/, `$1${description}`)
+          .replace(/(<link rel="canonical" href=")[^"]+/, `$1${canonical}`)
+          .replace(/(<meta property="og:url" content=")[^"]+/, `$1${canonical}`)
+          .replace(/(<meta property="og:title" content=")[^"]+/, `$1${title}`)
+          .replace(/(<meta property="og:description" content=")[^"]+/, `$1${description}`)
+        mkdirSync(resolve(outDir, path!), { recursive: true })
+        writeFileSync(resolve(outDir, path!, 'index.html'), html)
+      }
+      const sitemap = readFileSync(resolve('public/sitemap.xml'), 'utf8')
+      const teamUrls = teamPages.filter(([path]) => !sitemap.includes(`https://st-peter-by-khessa.vercel.app/${path}</loc>`)).map(([path]) => `  <url><loc>https://st-peter-by-khessa.vercel.app/${path}</loc></url>`).join('\n')
+      writeFileSync(resolve(outDir, 'sitemap.xml'), sitemap.replace('</urlset>', `${teamUrls}\n</urlset>`))
       writeFileSync(resolve(outDir, '404.html'), home.replace(/<title>.*?<\/title>/, '<title>Page not found | Khessa Daabay</title>').replace('</head>', '<meta name="robots" content="noindex" /></head>'))
     },
   }

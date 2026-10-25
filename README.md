@@ -20,7 +20,9 @@ The production output is `dist/`. The existing Khessa-owned GitHub repository re
 
 - `src/main.tsx`: React entry point.
 - `src/Profile.tsx`: profile content, contact links, exact plan schedules, consultation message, accessible navigation, client gallery, FAQs, privacy notice, terms, and error state.
-- `src/profile.css`: light burgundy and ivory design, responsive layouts, keyboard focus, photo motion, and reduced-motion support.
+- `src/Team.tsx` and `src/agents.ts`: Team & Careers routes and structured, owner-approved public agent profiles.
+- `src/team.css`: responsive team microsite styles.
+- `src/profile.css`: emerald and ivory design, responsive layouts, keyboard focus, photo motion, and reduced-motion support.
 - `index.html`: home metadata, canonical URL, and social sharing image.
 - `vite.config.ts`: build settings, legal page metadata, version file, and removal of retired portfolio assets from the published output.
 - `vercel.json`: existing-host deployment support, security headers, clean URLs, and redirects for old profile links.
@@ -28,6 +30,21 @@ The production output is `dist/`. The existing Khessa-owned GitHub repository re
 - `public/images/client-stories/`: supplied client celebration graphics.
 - `public/og-khessa.png`, `favicon.svg`, `apple-touch-icon.png`: personal sharing and icon assets.
 - `public/sitemap.xml` and `robots.txt`: indexable routes.
+
+## Team and Careers pages
+
+The existing Vercel project serves these routes:
+
+- `/team`: overview with career and client contact paths.
+- `/team/agents`: public team directory.
+- `/team/agents/khessa-daabay`: Khessa’s profile.
+- `/team/join`: recruitment information and contact steps.
+
+The pages reuse this repository and deployment. The homepage links to `/team` from its navigation, footer, and careers callout. Each team route gets its own title, description, canonical URL, social metadata, and sitemap entry at build time. Active agent profile routes are generated from `src/agents.ts`.
+
+To add an agent, add a record to `src/agents.ts` with a real name, approved portrait, role, location, introduction, and contact links. Set `isActive` to `false` while the profile is a draft. Use a unique URL-safe `slug` and set `displayOrder` to control its position. Do not set `isVerified` until St. Peter confirms the status. Active profiles and their SEO metadata are generated from this data at build time. Do not add contact information or credentials without the person’s consent. For later agent growth, the central `agents` array is the data boundary that a private admin or database layer can replace.
+
+Recruitment interest goes to Khessa through Messenger or email. This microsite does not collect applicant details and does not use the existing client plan application form for recruitment.
 
 ## Product data sources
 
