@@ -7,7 +7,7 @@ const messenger = 'https://m.me/cwb.salesagent1'
 const email = 'kdaabay.sa2@gmail.com'
 
 function TeamHeader() {
-  return <header className="team-header"><a className="team-brand" href="/team" aria-label="Khessa Daabay Team and Careers home"><img className="team-brand-mark" src="/images/brand/st-peter-mark.svg" width="42" height="42" alt="St. Peter emblem" /><span>Khessa Daabay<small>Team &amp; Careers</small></span></a><nav aria-label="Team navigation"><a href="/team">Our team</a><a href="/team/agents">Agents</a><a href="/team/join">Careers</a><a className="team-nav-back" href="/">Life plans <span aria-hidden="true">↗</span></a></nav></header>
+  return <header className="team-header"><a className="team-brand" href="/team" aria-label="Khessa Daabay Team and Careers home"><img className="team-brand-mark" src="/images/brand/st-peter-yodo.png" width="1254" height="1254" alt="St. Peter DeathCare Experts, yodo logo" /><span>Khessa Daabay<small>Team &amp; Careers</small></span></a><nav aria-label="Team navigation"><a href="/team">Our team</a><a href="/team/agents">Agents</a><a href="/team/join">Careers</a><a className="team-nav-back" href="/">Life plans <span aria-hidden="true">↗</span></a></nav></header>
 }
 
 function TeamFooter() {
